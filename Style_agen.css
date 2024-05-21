@@ -1,0 +1,139 @@
+/* Cor de fundo para a página inteira */
+body {
+    background-color: #dadada; /* Cor de fundo para a página */
+    font-family: 'Open Sans', Georgia;
+    margin: 0;
+    padding: 0;
+
+/* Estilo para o cabeçalho */
+.header {
+    background-color: #acacac;
+    color: #fff;
+    padding: 70px 0; /* Ajustei o padding para uma faixa mais fina */
+    text-align: center; /* Centraliza o texto */
+    font-family: 'Open Sans', Georgia;
+    position: absolute; /*posição absoluta*/
+    width: 100%; /* Define a largura total */
+    top: 0; /* Alinha o cabeçalho no topo da página */
+}
+
+/* Estilo para o logo */
+.header img {
+    width: 150px; /* Ajuste conforme necessário */
+    height: auto; /* Mantém a proporção */
+    margin-right: 20px; /* Espaçamento à direita */
+    top:-4px; /*distância do topo*/
+    left:100px; /*distância da esquerda*/
+    position: absolute; /*posição absoluta*/
+    
+}
+
+/* Estilo para o formulário */
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os elementos dentro do container possam ser envolvidos em várias linhas */
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 50%; /* Define a largura do container */
+    margin-top: 100px; /* Ajuste conforme necessário para evitar sobreposição com o cabeçalho */
+    margin-left: auto; /* Move o container para a direita */
+    margin-right: auto; /* Move o container para a esquerda */
+}
+
+.calendar-section, .form-section {
+    margin-bottom: 20px; /* Adiciona espaço abaixo do label */
+    margin-left: 20px; /* Adiciona margem à esquerda do label */
+}
+
+/* Adiciona espaçamento entre os elementos */
+form > * {
+    margin-bottom: 25px;
+}
+
+/* Estilo para o catálogo de serviços */
+.catalogo-servicos {
+    background-color: #dadada; /* Cor de fundo para o catálogo de serviços */
+    text-align: center;
+    margin-top: 160px; /* Ajuste a margem superior para posicionar abaixo do cabeçalho */
+    padding-top: 40px;
+    padding-bottom: 40px;
+    display: flex; /* Adiciona flexbox ao contêiner de serviços */
+    flex-wrap: wrap; /* Permite que os serviços envolvam várias linhas, se necessário */
+    justify-content: center; /* Centraliza os serviços no contêiner */
+    gap: 20px; /* Adiciona um espaço entre os serviços */
+}
+
+/* Estilo para o título "Catálogo de Serviços" */
+.catalogo-titulo {
+    margin-top: 100px; /* Adicione uma margem superior */
+    margin-bottom: 10px; /* Adicione uma margem inferior para separá-lo dos serviços */
+    text-align: center; /* Centralize o texto */
+    
+}
+
+.servicos-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+
+}
+.servico {
+    display: inline-block;
+    border: 2px solid #000; /* Borda preta */
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+    text-align: center;
+    width: 200px; /* Largura fixa */
+    height: 200px; /* Altura fixa */
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-radius: 20px; /* Adiciona bordas arredondadas */
+    box-sizing: border-box; /* Inclui padding e border na largura e altura totais */
+}
+
+.servico h3 {
+    font-size: 1.2em; /* Ajusta o tamanho da fonte do título */
+    margin: 10px 0; /* Margem em cima e embaixo do título */
+}
+
+.servico p {
+    font-size: 1em; /* Ajusta o tamanho da fonte do parágrafo */
+    margin: 10px 0; /* Margem em cima e embaixo do parágrafo */
+}
+
+.servico:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.servico.selected {
+    border: 2px solid #000;
+    background-color: #f0f0f0;
+}
+}
+
+/* Estilo para o calendário */
+#calendar {
+    margin: 0 auto; /* Centraliza o calendário horizontalmente na página */
+    padding-top: 80px; /* Adiciona espaço acima do calendário para alinhar com os demais elementos */
+    width: fit-content; /* Define a largura do calendário conforme o conteúdo */
+    text-align: center; /* Centraliza o conteúdo do calendário */
+}
+/* Estilo para o botão de envio */
+.btn-agendamento {
+    display: inline-block;
+    background-color: #535252;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px; 
+    text-decoration: none; 
+    transition: background-color 0.3s ease;
+    border: none; /* Remova a borda */
+    cursor: pointer; /* Altere o cursor ao passar o mouse */
+    font-size: 16px; /* Ajuste o tamanho da fonte */
+}
+
+.btn-agendamento:hover {
+    background-color: #747272; 
+}

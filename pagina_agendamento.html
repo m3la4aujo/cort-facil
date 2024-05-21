@@ -3,23 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barbearia - Agendamento Online</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Agendamento</title>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.0/main.min.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="Style_agen.css"> <!-- Adicione essa linha -->
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #calendar {
+            margin-top: 20px; /* Afasta o calendário de cima */
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 80%; /* Define a largura do container */
+            margin-top: 20px; /* Adiciona margem superior */
+        }
+
+        .calendar-section {
+            flex: 1; /* Ocupa 1/2 do espaço disponível no container */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-right: 20px; /* Adiciona espaço à direita */
+        }
+
+        .calendar-section label {
+            margin-bottom: 5px; /* Adiciona espaço abaixo do label */
+        }
+
+        .form-section {
+            flex: 1; /* Ocupa 1/2 do espaço disponível no container */
+            margin-left: 20px; /* Adiciona espaço à esquerda */
+        }
+
+        .catalogo-servicos {
+            margin-top: 20px;
+            text-align: center; /* Centraliza o título */
+        }
+        .servico {
+            display: inline-block;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px;
+            cursor: pointer;
+            text-align: center;
+            width: 200px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .servico:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .servico.selected {
+            border: 2px solid #000;
+            background-color: #f0f0f0;
+        }
+        .servico-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        /* Estilo para o título "Catálogo de Serviços" */
+        .catalogo-titulo {
+            margin-bottom: 20px; /* Adicione uma margem inferior para separá-lo dos serviços */
+            text-align: center; /* Centralize o texto */
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Barbearia - Agendamento Online</h1>
-    </header>
+    <div class="header">
+        <img src="logo.png_alterada.png" alt="Logo">
+    </div>
 
-    <section id="agendamento">
-        <h2>Agendamento de Horários</h2>
+    <div class="container">
+        <section class="calendar-section">  
+            <label for="datepicker">Escolha a data:</label>
+            <input type="text" id="datepicker" name="datepicker">
+        </section>
+
+        <section class="form-section">
+            <form>
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Telefone:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <!-- Outros campos de cadastro podem ser adicionados conforme necessário -->
+
+                <button type="submit" class="btn-agendamento">Enviar</button>
+        </section>
+    </div>
+
+    <div id='calendar'></div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.0/main.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth'
+                // Configurações adicionais podem ser adicionadas conforme necessário
+            });
+
+            calendar.render();
+        });
+
+        $(function() {
+            $("#datepicker").datepicker();
+        });
+
+        function selecionarServico(event) {
+            $('.servico').removeClass('selected');
+            $(event.currentTarget).addClass('selected');
+            $('#services').val($(event.currentTarget).data('service'));
+        }
+    </script>
+    <section class="catalogo-servicos">
+        <h2 class="catalogo-titulo">Catálogo de Serviços</h2>
+        <div class="servicos-container">
+            <div class="servico corte" data-service="corte" onclick="selecionarServico(event)">
+                <h3>Corte de Cabelo</h3>
+                <p>Corte de cabelo profissional, ajustado ao seu estilo.</p>
+                <p>Preço: R$ 50,00</p>
+            </div>
+            <div class="servico barba" data-service="barba" onclick="selecionarServico(event)">
+                <h3>Barba</h3>
+                <p>Aparação e modelagem de barba, com finalização de alta qualidade.</p>
+                <p>Preço: R$ 30,00</p>
+            </div>
+            <div class="servico corte_infantil" data-service="corte_infantil" onclick="selecionarServico(event)">
+                <h3>Corte Infantil</h3>
+                <p>Corte de cabelo especial para crianças, com cuidado e atenção.</p>
+                <p>Preço: R$ 40,00</p>
+            </div>
+            <div class="servico sobrancelha" data-service="sobrancelha" onclick="selecionarServico(event)">
+                <h3>Sobrancelha</h3>
+                <p>Design e modelagem de sobrancelhas para realçar sua expressão facial.</p>
+                <p>Preço: R$ 25,00</p>
+            </div>
+            <div class="servico tintura" data-service="tintura" onclick="selecionarServico(event)">
+                <h3>Tintura</h3>
+                <p>Mudança de cor de cabelo para uma nova aparência deslumbrante.</p>
+                <p>Preço: R$ 60,00</p>
+            </div>
+            <!-- Adicione mais serviços conforme necessário -->
+        </div>
     </section>
-
-    <section id="perfil">
-        <h2>Perfil do Cliente</h2>
-            </section>
-
-    <section id="catalogo">
-        <h2>Catálogo de Serviços</h2>
-        <p>Lista detalhada dos serviços oferecidos pela barbearia, com descrição e preço de cada um.</p>
-    
